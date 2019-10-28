@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #btn {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="btn">
+    </div>
+    <script>
+        var a = document.getElementById("btn");
+        a.addEventListener("mousedown", move, false)
+
+        function move(ev) {
+            var oEvent = ev || event
+            var disX = oEvent.clientX - a.offsetLeft
+            var disY = oEvent.clientY - a.offsetTop
+            if (a.setCapture) {
+                a.onmousemove = moveArea
+                a.onmouseup = upArea
+                a.setCapture()
+            } else {
+                document.onmousemove = moveArea
+                document.onmouseup = upArea
+            }
+
+            function moveArea(ev) {
+                var oEvent = ev || event
+                var l = oEvent.clientX - disX
+                var t = oEvent.clientY - disY
+                // 不会超出可视区
+                if (l < 0) {
+                    l = 0
+                } else if (l > document.documentElement.clientWidth - a.offsetWidth) {
+                    l = document.documentElement.clientWidth - a.offsetWidth
+                };
+                if (t < 0) {
+                    t = 0
+                } else if (t > document.documentElement.clientHeight - a.offsetHeight) {
+                    t = document.documentElement.clientHeight - a.offsetHeight
+                };
+                a.style.left = l + 'px'
+                a.style.top = t + 'px'
+            }
+            //防止鼠标移动过快
+            function upArea() {
+                this.onmousemove = null
+                this.onmouseup = null
+                if (a.releaseCapture) {
+                    a.releaseCapture()
+                };
+            }
+            return false
+        }
+    </script>
+
+</body>
+
+</html>
