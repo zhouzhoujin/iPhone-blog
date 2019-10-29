@@ -1,4 +1,4 @@
-# iphone-blog
+# myblog
 
 ## Project setup
 ```
