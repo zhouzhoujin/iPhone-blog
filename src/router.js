@@ -17,6 +17,11 @@ export default new Router({
             component: () => import('./components/HomePage.vue')
         },  
         {
+            path: '/test',
+            name: 'test',
+            component: () => import('./components/Test.vue')
+        },  
+        {
             path: '/img',
             name: 'img',
             component: () => import('./components/navgationBar.vue')
