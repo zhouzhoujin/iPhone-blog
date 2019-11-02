@@ -1,9 +1,10 @@
 <template>
   <div>
+    <Suspention></Suspention>
     <div class="block">
       <el-carousel height="390px" :autoplay="false">
-        <el-carousel-item v-for="item in 3" :key="item">
-          <h3 class="small">{{ item }}</h3>
+        <el-carousel-item v-for="item in list" :key="item.id">
+          <h3 class="small">{{ item.id }}</h3>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -12,9 +13,27 @@
 </template>
 <script>
 import NavBar from "./navgationBar.vue";
+import Suspention from './Suspention'
 export default {
   components: {
-    NavBar
+    NavBar,
+    Suspention
+  },
+  data(){
+    return{
+      list:[
+        {
+          id: 1
+        },
+        {
+          id: 2
+        },
+        {
+          id: 3
+        },
+        
+      ]
+    }
   }
 };
 </script>
@@ -25,6 +44,13 @@ export default {
   opacity: 0.75;
   line-height: 150px;
   margin: 0;
+}
+
+/* /.el-carousel__item::-webkit-scrollbar { width: 0 !important } */
+.el-carousel__item{
+  height: 100%;
+  /* -ms-overflow-style: none; 
+  overflow: -moz-scrollbars-none;  */
 }
 
 .el-carousel__item:nth-child(2n) {

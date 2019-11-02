@@ -1,9 +1,7 @@
 <template>
-<div>
   <div class="footer">
     <div class="footer-radius"></div>
   </div>
-</div>
 
 </template>
 <script>

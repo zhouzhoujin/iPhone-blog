@@ -2,7 +2,7 @@
 
         <div class="nav">
         <div class="nav-bar" v-for="(item,index) in list" :key="index">
-            <img :src="item.imgSrc">
+            <a href="/"><img :src="item.imgSrc"></a>
         </div>
     </div>
 
